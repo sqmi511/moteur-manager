@@ -1,0 +1,70 @@
+{
+  "app": { "name": "Moteur Manager", "tagline": "Subscribers, billing and printed invoices for generator owners" },
+  "common": {
+    "loading": "Loading…", "error": "Something went wrong", "retry": "Try again",
+    "name": "Name", "phone": "Phone", "status": "Status", "total": "Total",
+    "edit": "Edit", "delete": "Delete", "cancel": "Cancel", "save": "Save changes", "saved": "Saved",
+    "search": "Search…", "enabled": "Enabled", "disabled": "Disabled", "active": "Active"
+  },
+  "auth": { "username": "Username", "password": "Password", "signIn": "Sign in", "signOut": "Sign out" },
+  "nav": { "dashboard": "Dashboard", "subscribers": "Subscribers", "billing": "Monthly billing", "print": "Print invoices", "settings": "Settings", "owners": "Moteur accounts" },
+  "status": { "paid": "Paid", "partial": "Partial", "unpaid": "Unpaid" },
+  "owners": {
+    "title": "Moteur accounts", "new": "New account", "edit": "Edit account",
+    "empty": "No moteur accounts yet", "emptyHint": "Create the first account so an owner can sign in.",
+    "createdAt": "Created", "enable": "Enable", "disable": "Disable",
+    "created": "Account created", "updated": "Account updated",
+    "disabledMsg": "Account disabled", "enabledMsg": "Account enabled",
+    "passwordKeep": "Leave empty to keep the current password."
+  },
+  "subs": {
+    "title": "Subscribers", "add": "Add subscriber", "edit": "Edit subscriber",
+    "searchPh": "Search by name or phone", "empty": "No subscribers yet",
+    "emptyHint": "Add your first subscriber to start billing.", "noResults": "No subscriber matches your search",
+    "billingType": "Billing type", "amps": "Amps", "perKwh": "Per kWh", "perAmp": "Per amp",
+    "modeDisabled": "This billing mode is turned off in Settings",
+    "saved": "Subscriber saved", "deleted": "Subscriber deleted",
+    "deleteTitle": "Delete subscriber",
+    "deleteMsg": "Delete {{name}} and all of their bills? This cannot be undone."
+  },
+  "billing": {
+    "title": "Monthly billing", "hint": "Type the current reading and press Enter to jump to the next subscriber.",
+    "previous": "Previous", "current": "Current reading / amps", "kwh": "kWh",
+    "include": "Include in this run", "firstReading": "No earlier bill found. Enter the starting reading.",
+    "invalidRow": "Fix the rows marked in red first (current reading lower than previous, or amps missing).",
+    "nothing": "Nothing to generate yet. Enter at least one reading.",
+    "generated": "{{created}} created, {{updated}} updated",
+    "generate": "Generate {{count}} bills", "refresh": "Recalculate with current prices",
+    "grandTotal": "Total of this run", "payment": "Payment", "remaining": "Remaining",
+    "paidAmount": "Amount paid", "markPaid": "Mark fully paid", "noSubs": "No active subscribers"
+  },
+  "print": {
+    "title": "Print invoices", "selectInvoices": "Invoices", "selectAll": "Select all", "selectNone": "Clear",
+    "copy": "Copy type", "copySubscriber": "Subscriber", "copyOwner": "Owner", "copyArchive": "Archive", "copyAll": "All 3",
+    "copy_subscriber": "Subscriber copy", "copy_owner": "Owner copy", "copy_archive": "Archive copy",
+    "allHint": "Prints the full set three times: subscriber, owner and archive copies.",
+    "tint": "Preview paper", "previewOnly": "preview only, never printed",
+    "tint_white": "White", "tint_yellow": "Yellow", "tint_pink": "Pink",
+    "summary": "{{invoices}} invoices on {{sheets}} sheet(s)", "printNow": "Print",
+    "tip": "In the print dialog choose A4, Margins: None, Scale: 100%.",
+    "noBills": "No bills for this month", "noBillsHint": "Generate bills in Monthly billing first."
+  },
+  "dash": {
+    "title": "Dashboard", "billed": "Total billed", "collected": "Collected", "unpaid": "Unpaid this month",
+    "outstanding": "Outstanding, all months", "invoices": "invoices", "collectionRate": "Collected",
+    "subscribers": "active subscribers", "topConsumers": "Top consumers (kWh)", "unpaidList": "Unpaid invoices",
+    "noTop": "No kWh readings this month", "noUnpaid": "Everything is paid"
+  },
+  "settings": {
+    "title": "Settings", "business": "Business details", "uploadLogo": "Upload logo", "removeLogo": "Remove logo",
+    "logoHint": "PNG or JPG, up to 2 MB. It prints in black and white.",
+    "logoSaved": "Logo updated", "logoRemoved": "Logo removed",
+    "ownerName": "Name on invoices", "address": "Address", "footerNote": "Footer note",
+    "billing": "Billing and prices", "perKwh": "Bill per kWh", "perAmp": "Bill per amp",
+    "pricesHint": "Prices are entered in USD.", "pricePerKwh": "Price per kWh", "pricePerAmp": "Price per amp",
+    "fixedFee": "Fixed fee per bill", "currency": "Invoice currency",
+    "currencyUSD": "US dollars", "currencyLBP": "Lebanese pounds", "currencyBoth": "Both",
+    "exchangeRate": "Exchange rate (LBP per USD)", "rateHint": "New bills keep the price and rate in force when they are created.",
+    "saved": "Settings saved", "modesError": "Turn on at least one billing mode"
+  }
+}

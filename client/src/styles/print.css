@@ -1,0 +1,107 @@
+/* =====================================================================
+   Invoice + A4 sheet: one wide invoice per row, 5 per page.
+   Dark ink only.
+   ===================================================================== */
+.sheet-block { margin-bottom: 18px; }
+.sheet-caption { font-size: .82rem; font-weight: 600; color: var(--muted); margin: 0 0 6px; text-align: center; }
+.preview-wrap { overflow-x: auto; padding: 4px 0 20px; }
+.sheet-scale { width: max-content; margin: 0 auto; }
+
+.sheet {
+  width: 210mm;
+  height: 296mm;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(var(--rows, 5), 1fr);
+  direction: rtl;
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, .25);
+  margin: 0 auto;
+  overflow: hidden;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+@media screen and (max-width: 860px) {
+  .sheet-scale { zoom: .45; }
+}
+
+/* dashed cut line between rows */
+.cell { padding: 1.8mm 4mm; min-width: 0; min-height: 0; }
+.cell:not(:last-child) { border-bottom: 0.3mm dashed #444; }
+
+.invoice {
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 62mm;
+  grid-template-rows: auto auto auto 1fr auto;
+  column-gap: 3mm;
+  row-gap: 1mm;
+  padding: 1.6mm 3mm;
+  border: 0.3mm solid #1a1a1a;
+  border-radius: 2.2mm;
+  color: #111;
+  background: transparent;
+  font-family: 'Cairo', 'Inter', sans-serif;
+  font-size: 7.8pt;
+  line-height: 1.25;
+  overflow: hidden;
+}
+.invoice .ltr { unicode-bidi: isolate; display: inline-block; }
+.inv-copy {
+  position: absolute; top: 1.4mm; inset-inline-start: 1.8mm;
+  font-size: 6pt; font-weight: 700; border: 0.25mm solid #222; border-radius: 1.2mm; padding: 0 1.6mm;
+}
+.inv-head { grid-column: 1 / -1; text-align: center; display: flex; flex-direction: column; align-items: center; gap: .3mm; }
+.inv-logo { height: 8mm; max-width: 32mm; object-fit: contain; display: block; }
+.inv-owner { margin: 0; font-size: 14pt; font-weight: 800; line-height: 1.15; color: #000; }
+.inv-info { margin: 0; font-size: 7pt; color: #333; }
+.inv-meta { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.4fr 1.2fr; gap: 1mm; border-top: 0.2mm solid #555; border-bottom: 0.2mm solid #555; padding: .5mm 0; }
+.inv-meta div { display: flex; gap: 1.2mm; align-items: baseline; }
+.inv-meta b { font-size: 6.8pt; color: #333; font-weight: 600; }
+.inv-meta span { font-weight: 700; }
+.inv-status { border: 0.2mm solid #222; border-radius: 1mm; padding: 0 1.2mm; font-size: 6.6pt; }
+.inv-name { grid-column: 1; grid-row: 3; font-size: 9pt; }
+.inv-name b { color: #333; font-weight: 600; }
+.inv-table { grid-column: 1; grid-row: 4; align-self: start; width: 100%; border-collapse: collapse; table-layout: fixed; }
+.inv-table th, .inv-table td { border: 0.2mm solid #555; text-align: center; padding: .5mm .8mm; }
+.inv-table th { font-size: 6.6pt; font-weight: 600; color: #222; }
+.inv-table td { font-size: 9pt; font-weight: 700; }
+.inv-bottom { grid-column: 2; grid-row: 3 / 5; display: flex; flex-direction: column; gap: 1.2mm; }
+.inv-fee { display: flex; flex-direction: column; justify-content: center; gap: .6mm; font-size: 7.2pt; }
+.inv-fee div { display: flex; justify-content: space-between; gap: 1mm; border-bottom: 0.15mm dotted #666; }
+.inv-fee span { color: #333; }
+.inv-total { flex: 1; border: 0.55mm solid #000; border-radius: 1.6mm; padding: .5mm 1.6mm; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.inv-total-label { font-size: 6.6pt; font-weight: 700; color: #222; }
+.inv-total strong { font-size: 11.5pt; font-weight: 800; line-height: 1.15; color: #000; }
+.inv-total .line { display: block; }
+.inv-foot { grid-column: 1 / -1; grid-row: 5; margin: 0; text-align: center; font-size: 6.6pt; color: #333; max-height: 5.4mm; overflow: hidden; }
+
+/* 6 per page: tighter header */
+.sheet.dense .inv-logo { height: 5.5mm; }
+.sheet.dense .inv-owner { font-size: 12pt; }
+.sheet.dense .inv-total strong { font-size: 9.5pt; }
+
+/* =====================================================================
+   PRINT: A4, no margin, hide ALL UI.
+   ===================================================================== */
+@page { size: A4; margin: 0; }
+
+@media print {
+  html, body, #root { background: #fff !important; margin: 0 !important; padding: 0 !important; width: auto !important; height: auto !important; }
+  .no-print, .app-header, .sticky-bar, .modal-backdrop { display: none !important; }
+  .layout, .app-main, .print-page, .preview-wrap, .sheet-scale, .sheet-block {
+    display: block !important; margin: 0 !important; padding: 0 !important; max-width: none !important;
+    width: auto !important; zoom: 1 !important; overflow: visible !important; transform: none !important;
+  }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .sheet {
+    display: grid !important;
+    margin: 0 !important; box-shadow: none !important; background: none !important;
+    width: 210mm; height: 296mm;
+    break-after: page; page-break-after: always; break-inside: avoid;
+  }
+  .sheet:last-of-type { break-after: auto; page-break-after: auto; }
+  .sheet-block:last-child .sheet { break-after: auto; page-break-after: auto; }
+  .inv-logo { filter: grayscale(1) contrast(1.1); }
+}
